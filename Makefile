@@ -10,7 +10,7 @@ error:
 	nasm -o boot.bin boot1.asm
 	nasm -o loader.bin loader.asm
 	nasm -f elf -o kernel.o kernel.asm
-	i686-elf-ld -s -o kernel.bin kernel.o
+	i686-elf-ld -s -Ttext 0x100000 -o kernel.bin kernel.o
 	dd if=/dev/zero of=disk.img bs=512 count=2880
 	dd if=boot.bin of=disk.img bs=512 count=1
 	edimg imgin:disk.img copy from:loader.bin to:@: copy from:kernel.bin to:@: imgout:disk.img
