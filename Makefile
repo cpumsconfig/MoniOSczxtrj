@@ -8,6 +8,11 @@ error:
 	nasm -o boot.bin boot.asm
 1:
 	nasm -o boot.bin boot1.asm
+	nasm -o loader.bin loader.asm
+	dd if=/dev/zero of=disk.img bs=512 count=2880
+	dd if=boot.bin of=disk.img bs=512 count=1
+	edimg imgin:disk.img copy from:loader.bin to:@: imgout:disk.img
+
 2:
 	nasm -o boot.bin boot2.asm
 3:
