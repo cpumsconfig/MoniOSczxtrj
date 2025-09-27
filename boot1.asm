@@ -11,7 +11,7 @@ DeltaSectorNo           equ 17 ; 由于第一个簇不用，所以RootDirSectors
     jmp short LABEL_START
     nop ; BS_JMPBoot 由于要三个字节而jmp到LABEL_START只有两个字节 所以加一个nop
 
-    BS_OEMName     db 'tutorial'    ; 固定的8个字节
+    BS_OEMName     db 'system  '    ; 固定的8个字节
     BPB_BytsPerSec dw 512           ; 每扇区固定512个字节
     BPB_SecPerClus db 1             ; 每簇固定1个扇区
     BPB_RsvdSecCnt dw 1             ; MBR固定占用1个扇区
@@ -28,7 +28,7 @@ DeltaSectorNo           equ 17 ; 由于第一个簇不用，所以RootDirSectors
     BS_Reserved1   db 0             ; 未使用，预留
     BS_BootSig     db 0x29          ; 扩展引导标记
     BS_VolID       dd 0             ; 卷序列号，由于只挂载一个软盘所以为0
-    BS_VolLab      db 'OS-tutorial' ; 卷标，11个字节
+    BS_VolLab      db 'SYSTEM     ' ; 卷标，11个字节
     BS_FileSysType db 'FAT12   '    ; 由于是 FAT12 文件系统，所以写入 FAT12 后补齐8个字节
 
 LABEL_START:
